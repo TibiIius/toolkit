@@ -5,7 +5,7 @@ nodejs
 python3
 python3-pip
 clang
-clang-extra-tools
+clang-tools-extra
 lldb
 gcc
 gdb
@@ -16,3 +16,4 @@ SFML-devel
 zathura
 zathura-pdf-mupdf
 texlive-scheme-full
+dotnet
