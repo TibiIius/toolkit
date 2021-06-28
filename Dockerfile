@@ -16,7 +16,7 @@ RUN npm i -g yarn
 RUN yarn global add @vue/cli typescript
 
 # Add packages for Neovim Python
-RUN sudo -u tim pip3 --user install pynvim neovim
+RUN pip3 install pynvim neovim
 
 # Run CMD because otherwise everything bricks 
 CMD /bin/zsh
