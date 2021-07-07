@@ -11,8 +11,6 @@ gcc
 gdb
 neovim
 fzf
-SFML
-SFML-devel
 zathura
 zathura-pdf-mupdf
 texlive-scheme-full

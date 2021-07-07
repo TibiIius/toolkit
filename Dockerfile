@@ -19,4 +19,4 @@ RUN yarn global add @vue/cli typescript
 RUN sudo -u tim pip3 --user install pynvim neovim
 
 # Run CMD because otherwise everything bricks 
-CMD /bin/zsh
+CMD /usr/bin/zsh
