@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:34
+FROM registry.fedoraproject.org/fedora-toolbox:latest
 
 # Install extra packages
 COPY packages /
