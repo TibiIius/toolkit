@@ -15,3 +15,5 @@ zathura
 zathura-pdf-mupdf
 texlive-scheme-full
 dotnet
+dotnet-sdk-3.1
+mono-complete
