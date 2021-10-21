@@ -9,6 +9,8 @@ clang-tools-extra
 lldb
 gcc
 gdb
+cmake
+ninja-build
 neovim
 fzf
 zathura
@@ -17,3 +19,4 @@ texlive-scheme-full
 dotnet
 dotnet-sdk-3.1
 mono-complete
+git-lfs
