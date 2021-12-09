@@ -20,3 +20,5 @@ dotnet
 dotnet-sdk-3.1
 mono-complete
 git-lfs
+bat
+exa
