@@ -1,4 +1,7 @@
 bat
+boost
+boost-devel
+boost-json
 bzip2
 bzip2-devel
 clang
