@@ -14,6 +14,7 @@ findutils
 fzf
 gcc
 gdb
+git-delta
 git-lfs
 libffi-devel
 lldb
