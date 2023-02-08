@@ -33,3 +33,9 @@ RUN userdel builduser && \
 # Configure OpenSSH server
 RUN printf "Port 2222\nListenAddress localhost\nPermitEmptyPasswords yes\n" >> /etc/ssh/sshd_config \
   /usr/sbin/ssh-keygen -A
+
+# Add some symlinks to access host system stuff via `distrobox-host-exec`
+RUN  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
+  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
+  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
+  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree
