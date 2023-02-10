@@ -1,4 +1,4 @@
-FROM docker.io/library/archlinux:latest
+FROM quay.io/toolbx-images/archlinux-toolbox:latest
 
 # Setup base
 RUN pacman -Sy --noconfirm archlinux-keyring && \
