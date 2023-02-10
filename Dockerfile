@@ -28,7 +28,7 @@ RUN sudo -u builduser bash -c 'echo y | LANG=C yay --noprovides --answerdiff Non
 
 # Remove builduser again
 RUN userdel builduser && \
-  sed -i 's/builduser ALL=(ALL) ALL\n//' /etc/sudoers
+  rm -f /etc/sudoers.d/builduser
 
 # Configure OpenSSH server
 RUN printf "Port 2222\nListenAddress localhost\nPermitEmptyPasswords yes\n" >> /etc/ssh/sshd_config \
