@@ -27,10 +27,10 @@ RUN sudo -u builduser bash -c 'echo y | LANG=C yay --noprovides --answerdiff Non
   rm /packages
 
 # Cleanup package cache
-RUN yay -Scc --noconfirm
+RUN sudo -u builduser bash -c 'yay -Scc --noconfirm'
 
 # Remove builduser again
-RUN userdel builduser && \
+RUN userdel -r builduser && \
   rm -f /etc/sudoers.d/builduser
 
 # Configure OpenSSH server
