@@ -1,6 +1,9 @@
 name: build-and-push
 
 on:
+  pull_request:
+    paths-ignore:
+      - "**/README.md"
   schedule:
     - cron: "0 0 * * SUN"
   push:
@@ -38,6 +41,7 @@ jobs:
       # https://github.com/macbre/push-to-ghcr/issues/12
       - name: Lowercase Registry
         id: registry_case
+        if: github.event_name != 'pull_request'
         uses: ASzc/change-string-case-action@v5
         with:
           string: ${{ env.IMAGE_REGISTRY }}
@@ -46,6 +50,7 @@ jobs:
       - name: Push To GHCR
         uses: redhat-actions/push-to-registry@v2
         id: push
+        if: github.event_name != 'pull_request'
         env:
           REGISTRY_USER: ${{ github.actor }}
           REGISTRY_PASSWORD: ${{ github.token }}
