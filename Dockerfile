@@ -26,6 +26,9 @@ COPY packages /
 RUN sudo -u builduser bash -c 'echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" -S $(<packages)' && \
   rm /packages
 
+# Cleanup package cache
+RUN yay -Scc --noconfirm
+
 # Remove builduser again
 RUN userdel builduser && \
   rm -f /etc/sudoers.d/builduser
