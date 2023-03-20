@@ -34,7 +34,7 @@ RUN userdel -r builduser && \
   rm -f /etc/sudoers.d/builduser
 
 # Configure OpenSSH server
-RUN printf "Port 2222\nListenAddress localhost\nPermitEmptyPasswords yes\n" >> /etc/ssh/sshd_config \
+RUN printf "Port 2222\nListenAddress localhost\nPermitEmptyPasswords yes\n" >> /etc/ssh/sshd_config && \
   /usr/sbin/ssh-keygen -A
 
 # Add some pacman config stuff
