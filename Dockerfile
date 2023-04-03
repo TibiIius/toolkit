@@ -1,5 +1,7 @@
 FROM quay.io/toolbx-images/archlinux-toolbox:latest
 
+ARG GIST_PAT=${GIST_PAT}
+
 # Setup base
 RUN pacman -Sy --noconfirm archlinux-keyring && \
   pacman -S --needed --noconfirm git base-devel go
@@ -14,16 +16,18 @@ RUN useradd -m builduser && \
 # Install yay
 RUN mkdir yay && \
   cd yay && \
-  git clone https://aur.archlinux.org/yay.git && \
-  cd yay && \
+  git clone https://aur.archlinux.org/yay.git . && \
   chown -R builduser:builduser . && \ 
   sudo -u builduser bash -c 'makepkg -si --noconfirm' && \
   rm -rf /yay
 
 # Install extra packages
-# TODO: Download list from pug gist instead of `packages` file
-COPY packages /
-RUN sudo -u builduser bash -c 'echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" -S $(<packages)' && \
+RUN curl -L \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer ${GIST_PAT}"\
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  "https://gist.github.com/TibiIius/fcd53c7e27609f4acd5d6606bf423c0b/raw/" > /packages && \
+  sudo -u builduser bash -c 'echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" -Sy $(<packages)' && \
   rm /packages
 
 # Cleanup package cache
