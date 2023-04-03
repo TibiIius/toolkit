@@ -33,6 +33,8 @@ jobs:
         with:
           containerfiles: |
             ./Dockerfile
+          build-args: |
+            GIST_PAT = ${{ secrets.GIST_PAT }}
           image: archbox
           tags: latest ${{ github.sha }}
           oci: true
