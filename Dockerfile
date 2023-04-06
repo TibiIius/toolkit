@@ -26,8 +26,8 @@ RUN curl -L \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer ${GIST_PAT}"\
   -H "X-GitHub-Api-Version: 2022-11-28" \
-  "https://gist.github.com/TibiIius/fcd53c7e27609f4acd5d6606bf423c0b/raw/" > /packages && \
-  sudo -u builduser bash -c 'echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" -Sy $(<packages)' && \
+  "https://gist.github.com/TibiIius/672c9c9c6749bec37903378b717cb8dd/raw/" > /packages && \
+  pacman --noconfirm -Sy $(<packages) && \
   rm /packages
 
 # Cleanup package cache
