@@ -52,5 +52,8 @@ RUN  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
   ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree && \
   ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/buildah
 
+# Setup Gist IDs for pug
+RUN printf "GIST_ID=672c9c9c6749bec37903378b717cb8dd\nGIST_AUR=c6ba136b6e6308a8254d08dae2b530db\n" > /etc/pug
+
 # Set system language locale
 ENV LANG=en_US.UTF-8
