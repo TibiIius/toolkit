@@ -49,6 +49,7 @@ RUN printf "[options]\nColor\nILoveCandy\nParallelDownloads = 5\n" > /etc/pacman
 RUN  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
   ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
   ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
+  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman-compose && \
   ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree && \
   ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/buildah
 
