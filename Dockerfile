@@ -46,8 +46,7 @@ RUN printf "[options]\nColor\nILoveCandy\nParallelDownloads = 5\n" > /etc/pacman
   printf "# Extra config options\nInclude = /etc/pacman.d/extra-options" >> /etc/pacman.conf
 
 # Add some symlinks to access host system stuff via `distrobox-host-exec`
-RUN  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
+RUN ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
   ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
   ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman-compose && \
   ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree && \
