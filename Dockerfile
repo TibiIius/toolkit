@@ -49,7 +49,7 @@ RUN printf "[options]\nColor\nILoveCandy\nParallelDownloads = 5\n" > /etc/pacman
   printf "# Extra config options\nInclude = /etc/pacman.d/extra-options" >> /etc/pacman.conf
 
 # Fix locale
-RUN printf "en_US.UTF-8 UTF-8\nde_DE.UTF-8 UTF-8" >> /etc/locale.gen && \
+RUN printf "en_US.UTF-8 UTF-8\nde_DE.UTF-8 UTF-8\n" >> /etc/locale.gen && \
   locale-gen
 
 # Add some symlinks to access host system stuff via `distrobox-host-exec`
