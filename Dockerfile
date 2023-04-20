@@ -2,9 +2,19 @@ FROM quay.io/toolbx-images/archlinux-toolbox:latest
 
 ARG GIST_PAT=${GIST_PAT}
 
-# Setup base
+# Some stuff like man pages and locales are excluded, but I want them in here >:(
+RUN sed -i "s|NoExtract.*||g" /etc/pacman.conf
+
+# Add some pacman config stuff
+RUN printf "[options]\nColor\nILoveCandy\nParallelDownloads = 5\n" > /etc/pacman.d/extra-options && \
+  printf "# Extra config options\nInclude = /etc/pacman.d/extra-options" >> /etc/pacman.conf
+
+# We need to reinstall glibc or else we don't have all locales we need
 RUN pacman -Sy --noconfirm archlinux-keyring && \
-  pacman -S --needed --noconfirm git base-devel go
+  pacman -Sy --noconfirm glibc
+
+# Setup base
+RUN pacman -S --needed --noconfirm git base-devel go
 
 # Setup builduser
 # We need to add a home dir for makepkg cache
@@ -20,6 +30,10 @@ RUN mkdir yay && \
   chown -R builduser:builduser . && \ 
   sudo -u builduser bash -c 'makepkg -si --noconfirm' && \
   rm -rf /yay
+
+# Fix locale
+RUN printf "en_US.UTF-8 UTF-8\nde_DE.UTF-8 UTF-8\n" >> /etc/locale.gen && \
+  locale-gen
 
 # Install extra packages
 RUN curl -L \
@@ -40,17 +54,6 @@ RUN userdel -r builduser && \
 # Configure OpenSSH server
 RUN printf "Port 2222\nListenAddress localhost\nPermitEmptyPasswords yes\n" >> /etc/ssh/sshd_config && \
   /usr/sbin/ssh-keygen -A
-
-# Some stuff like man pages and locales are excluded, but I want them in here >:(
-RUN sed -i "s|NoExtract.*||g" /etc/pacman.conf
-
-# Add some pacman config stuff
-RUN printf "[options]\nColor\nILoveCandy\nParallelDownloads = 5\n" > /etc/pacman.d/extra-options && \
-  printf "# Extra config options\nInclude = /etc/pacman.d/extra-options" >> /etc/pacman.conf
-
-# Fix locale
-RUN printf "en_US.UTF-8 UTF-8\nde_DE.UTF-8 UTF-8\n" >> /etc/locale.gen && \
-  locale-gen
 
 # Add some symlinks to access host system stuff via `distrobox-host-exec`
 RUN ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
