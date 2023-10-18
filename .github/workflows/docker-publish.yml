@@ -26,10 +26,12 @@ jobs:
         image:
           - archbox
           - fedora
+          - ubuntu
     env:
       IMAGE_NAME: ${{ matrix.image }}
       IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-      FEDORA_IMAGE_MAJOR: 39
+      FEDORA_IMAGE_MAJOR: "39"
+      UBUNTU_RELEASE: "22.04"
 
     steps:
       - uses: actions/checkout@v3
@@ -56,6 +58,7 @@ jobs:
         with:
           build-args: |
             FEDORA_IMAGE_MAJOR=${{ env.FEDORA_IMAGE_MAJOR }}
+            UBUNTU_RELEASE=${{ env.UBUNTU_RELEASE }}
           file: ./${{ env.IMAGE_NAME }}/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
