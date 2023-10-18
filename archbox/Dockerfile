@@ -2,6 +2,8 @@ FROM quay.io/toolbx-images/archlinux-toolbox:latest
 
 ARG GIST_PAT=${GIST_PAT}
 
+COPY common /tmp/common
+
 # Some stuff like man pages and locales are excluded, but I want them in here >:(
 RUN sed -i "s|NoExtract.*||g" /etc/pacman.conf
 
@@ -56,12 +58,10 @@ RUN printf "Port 2222\nListenAddress localhost\nPermitEmptyPasswords yes\n" >> /
   /usr/sbin/ssh-keygen -A
 
 # Add some symlinks to access host system stuff via `distrobox-host-exec`
-RUN ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/flatpak && \
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman && \
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/podman-compose && \
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/docker && \
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/rpm-ostree && \
-  ln -fs /usr/bin/distrobox-host-exec /usr/local/bin/buildah
+RUN /tmp/common/symlinks.sh
 
 # Setup Gist IDs for pug
 RUN printf "GIST_NAT=672c9c9c6749bec37903378b717cb8dd\nGIST_AUR=c6ba136b6e6308a8254d08dae2b530db\n" > /etc/pug
+
+# Remove tmp files
+RUN rm -rf /tmp/*
