@@ -1,6 +1,6 @@
 ARG FEDORA_IMAGE_MAJOR="${FEDORA_IMAGE_MAJOR:-latest}"
 
-FROM quay.io/toolbx-images/fedora-toolbox:${FEDORA_IMAGE_MAJOR}
+FROM registry.fedoraproject.org/fedora-toolbox:${FEDORA_IMAGE_MAJOR}
 
 COPY common /tmp/common
 
