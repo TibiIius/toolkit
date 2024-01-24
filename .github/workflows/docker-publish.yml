@@ -52,7 +52,7 @@ jobs:
             type=sha
             type=raw,value=${{ env.FEDORA_IMAGE_MAJOR }}
             type=raw,value=${{ env.UBUNTU_RELEASE }}
-            type=raw,value=latest,enalbe=${{ contains('latest', matrix.image) }}
+            type=raw,value=latest,enable=${{ contains('latest', matrix.image) }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4.1.1
