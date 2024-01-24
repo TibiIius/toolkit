@@ -22,3 +22,4 @@ neovim
 git-lfs
 ranger
 file
+dnf-plugins-core
