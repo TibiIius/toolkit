@@ -29,6 +29,7 @@ jobs:
           - ubuntu
         include:
           - release: latest
+            image: [archbox, fedora, ubuntu]
           - release: 39
             image: fedora
           - release: 22.04
