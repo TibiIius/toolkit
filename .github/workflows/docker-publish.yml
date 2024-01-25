@@ -24,14 +24,19 @@ jobs:
       fail-fast: false
       matrix:
         image:
-          - { archbox: [latest] }
-          - { fedora: [latest, 39] }
-          - { ubuntu: [latest, 22.04] }
+          - archbox
+          - fedora
+          - ubuntu
+        include:
+          - release: latest
+          - image: fedora
+            release: 39
+          - image: ubuntu
+            release: 22.04
     env:
       IMAGE_NAME: ${{ matrix.image }}
       IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-      FEDORA_IMAGE_MAJOR: ${{ matrix.image.fedora }}
-      UBUNTU_RELEASE: ${{ matrix.image.ubuntu }}
+      IMAGE_RELEASE: ${{ matrix.release }}
 
     steps:
       - uses: actions/checkout@v3
@@ -50,16 +55,13 @@ jobs:
           images: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=sha
-            type=raw,value=${{ env.FEDORA_IMAGE_MAJOR }}
-            type=raw,value=${{ env.UBUNTU_RELEASE }}
-            type=raw,value=latest,enable=${{ contains('latest', matrix.image) }}
+            type=raw,value=${{ env.IMAGE_RELEASE }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4.1.1
         with:
           build-args: |
-            FEDORA_IMAGE_MAJOR=${{ env.FEDORA_IMAGE_MAJOR }}
-            UBUNTU_RELEASE=${{ env.UBUNTU_RELEASE }}
+            IMAGE_RELEASE=${{ env.IMAGE_RELEASE }}
           file: ./${{ env.IMAGE_NAME }}/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}

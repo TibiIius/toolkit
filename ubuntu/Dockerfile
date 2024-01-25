@@ -1,4 +1,4 @@
-ARG UBUNTU_RELEASE="${UBUNTU_RELEASE:-22.04}"
+ARG UBUNTU_RELEASE="${IMAGE_RELEASE:-latest}"
 
 FROM quay.io/toolbx-images/ubuntu-toolbox:${UBUNTU_RELEASE}
 

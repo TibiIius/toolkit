@@ -1,4 +1,4 @@
-ARG FEDORA_IMAGE_MAJOR="${FEDORA_IMAGE_MAJOR:-latest}"
+ARG FEDORA_IMAGE_MAJOR="${IMAGE_RELEASE:-latest}"
 
 FROM registry.fedoraproject.org/fedora-toolbox:${FEDORA_IMAGE_MAJOR}
 
