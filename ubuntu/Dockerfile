@@ -8,6 +8,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && \
   apt upgrade --yes && \
   apt install --yes zsh neovim
 
+# Enable deb sources
+RUN sed -i "s/# deb-src/deb-src/g" /etc/apt/sources.list
+
 # Symlinks for host access
 RUN /tmp/common/symlinks.sh
 
