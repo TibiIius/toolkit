@@ -23,3 +23,5 @@ git-lfs
 ranger
 file
 dnf-plugins-core
+llvm-libunwind-devel
+libunwind-devel
