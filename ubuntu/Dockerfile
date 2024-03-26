@@ -1,6 +1,6 @@
-ARG UBUNTU_RELEASE="${IMAGE_RELEASE:-latest}"
+ARG IMAGE_RELEASE="${IMAGE_RELEASE:-latest}"
 
-FROM quay.io/toolbx-images/ubuntu-toolbox:${UBUNTU_RELEASE}
+FROM quay.io/toolbx-images/ubuntu-toolbox:${IMAGE_RELEASE}
 
 COPY common /tmp/common
 

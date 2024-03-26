@@ -1,6 +1,6 @@
-ARG FEDORA_IMAGE_MAJOR="${IMAGE_RELEASE:-latest}"
+ARG IMAGE_RELEASE="${IMAGE_RELEASE:-latest}"
 
-FROM registry.fedoraproject.org/fedora-toolbox:${FEDORA_IMAGE_MAJOR}
+FROM quay.io/toolbx-images/fedora-toolbox:${IMAGE_RELEASE}
 
 COPY common /tmp/common
 COPY fedora/base_packages /tmp/base_packages
