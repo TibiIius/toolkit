@@ -1,6 +1,6 @@
 ARG ARCH_RELEASE="${IMAGE_RELEASE:-latest}"
 
-FROM quay.io/toolbx-images/archlinux-toolbox:${ARCH_RELEASE}
+FROM quay.io/toolbx/archlinux-toolbox:${ARCH_RELEASE}
 
 ARG GIST_PAT=${GIST_PAT}
 
