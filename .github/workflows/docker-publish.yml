@@ -29,11 +29,9 @@ jobs:
         release:
           - latest
         include:
-          - release: 39
-            image: fedora
           - release: 40
             image: fedora
-          - release: 22.04
+          - release: 24.04
             image: ubuntu
     env:
       IMAGE_NAME: ${{ matrix.image }}
