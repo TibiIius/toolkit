@@ -4,9 +4,9 @@ FROM quay.io/toolbx/ubuntu-toolbox:${IMAGE_RELEASE}
 
 COPY common /tmp/common
 
-RUN DEBIAN_FRONTEND=noninteractive apt update && \
-  apt upgrade --yes && \
-  apt install --yes zsh neovim
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+  apt-get upgrade --yes && \
+  apt-get install --yes zsh
 
 # Enable deb sources
 RUN sed -i "s/# deb-src/deb-src/g" /etc/apt/sources.list
