@@ -4,9 +4,8 @@ FROM quay.io/toolbx/ubuntu-toolbox:${IMAGE_RELEASE}
 
 COPY common /tmp/common
 
-RUN rm /etc/apt/apt.conf.d/20apt-esm-hook.conf
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+RUN export DEBIAN_FRONTEND=noninteractive && \
+  apt-get update && \
   apt-get upgrade --yes && \
   apt-get install --yes zsh
 
