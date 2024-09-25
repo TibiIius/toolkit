@@ -6,6 +6,7 @@ COPY common /tmp/common
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
+  apt-get remove --yes ubuntu-pro-client && \
   apt-get upgrade --yes && \
   apt-get install --yes zsh
 
