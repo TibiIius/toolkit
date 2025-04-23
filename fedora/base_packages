@@ -10,17 +10,12 @@ bzip2-devel
 openssl-devel
 zlib
 zlib-devel
-python3
-python3-devel
 clang
 gcc
 g++
-yt-dlp
 smartmontools
 zsh
-neovim
 git-lfs
-ranger
 file
 dnf-plugins-core
 llvm-libunwind-devel
