@@ -55,7 +55,7 @@ jobs:
             type=raw,value=${{ env.IMAGE_RELEASE }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v6.17.0
+        uses: docker/build-push-action@v6.18.0
         with:
           build-args: |
             IMAGE_RELEASE=${{ env.IMAGE_RELEASE }}
