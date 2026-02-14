@@ -27,7 +27,9 @@ jobs:
           - fedora
           - ubuntu
         include:
-          - release: 42
+          - release: latest
+            image: fedora
+          - release: rawhide
             image: fedora
           - release: 24.04
             image: ubuntu
